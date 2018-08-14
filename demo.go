@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"path"
 
 	"github.com/moshuipan/go-itchat/utils"
 	"github.com/moshuipan/go-itchat/webapp"
@@ -21,7 +22,8 @@ func main() {
 			}
 		}
 	})
-	fmt.Println(webapp.ServeClient(client, "", handler))
+	fmt.Println(webapp.ServeClient(client, path.Join("./usersFile", "1587014612"), handler))
+	fmt.Println(client.WebWxSendMediaMsg(path.Join("./rock.png"), utils.FileHelper, 47)) //掷骰子,石头剪刀布
 	c := make(chan struct{})
 	<-c
 }
