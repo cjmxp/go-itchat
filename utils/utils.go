@@ -12,7 +12,6 @@ import (
 	"path"
 	"runtime"
 	"strings"
-	"syscall"
 	"time"
 )
 
@@ -129,18 +128,6 @@ a:
 		y += wigth
 	}
 	fmt.Println()
-}
-
-func printWhite(s string) {
-	if isWindows {
-		kernel32 := syscall.NewLazyDLL("kernel32.dll")
-		proc := kernel32.NewProc("SetConsoleTextAttribute")
-		_, _, _ = proc.Call(uintptr(syscall.Stdout), uintptr(240)) //12 Red light
-		fmt.Print(s)
-		_, _, _ = proc.Call(uintptr(syscall.Stdout), uintptr(7))
-	} else {
-		fmt.Printf("\033[%d;%dm%s\033[0m", 37, 47, s)
-	}
 }
 
 /**
